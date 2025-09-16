@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World Snapp</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hello, World!</h1>
+
+        <div class="shared-textarea-section">
+            <label for="shared-textarea">Shared Text Area (User & Agent):</label>
+            <textarea id="shared-textarea" placeholder="Type here... AI agents can also read and write to this area."></textarea>
+        </div>
+
+        <div class="user-controls">
+            <!-- User controls removed - buttons moved to relevant sections -->
+        </div>
+
+        <div class="connection-status">
+            <h3>🔗 Connection Status: <span id="status" class="status-indicator disconnected">Disconnected</span></h3>
+        </div>
+
+        <div id="error" class="error"></div>
+
+        <div id="connection-info" class="connection-info">
+            <h3>🤖 Agent Connection Details</h3>
+            <p>Use this configuration to connect your AI assistant:</p>
+            <pre id="mcp-config"></pre>
+            <div class="connection-controls">
+                <button id="auth-toggle" onclick="toggleAuth()" disabled>Toggle Auth: Loading...</button>
+            </div>
+            <p><strong>Test prompts:</strong></p>
+            <ul>
+                <li>"Write 'Hello from AI!' in the shared textarea"</li>
+                <li>"What's currently in the shared text area?"</li>
+                <li>"Add your message to whatever is in the textarea"</li>
+            </ul>
+        </div>
+
+        <div class="instructions">
+            <h3>📋 Instructions</h3>
+            <ol>
+                <li>Make sure your server is running with a valid <code>SNAPP_API_KEY</code></li>
+                <li>Wait for the status to show "Connected" (may take a few seconds)</li>
+                <li>When connected, the MCP configuration will appear above</li>
+                <li>Copy the configuration and add it to your AI assistant (Claude Desktop, etc.)</li>
+                <li>Tell your assistant: <em>"Write 'Hello from AI!' in the shared textarea"</em></li>
+                <li>Watch the textarea update in real-time! 🎉</li>
+            </ol>
+        </div>
+
+        <div class="logs-section">
+            <div class="logs-header">
+                <h3>📝 Logs</h3>
+                <button onclick="clearLogs()" class="clear-logs-btn">Clear Logs</button>
+            </div>
+            <div id="logs" class="logs">
+                <div class="log-entry info">Initializing Hello World Snapp...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/sdk/snappjack-sdk.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

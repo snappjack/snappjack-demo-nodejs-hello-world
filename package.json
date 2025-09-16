@@ -1,0 +1,18 @@
+{
+  "name": "snappjack-5-minute-example",
+  "version": "1.0.0",
+  "description": "A minimal hello world example demonstrating Snappjack SDK integration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "@snappjack/sdk-js": "file:../snappjack-sdk-js",
+    "express": "^4.18.2",
+    "dotenv": "^16.3.1"
+  },
+  "keywords": ["snappjack", "ai", "mcp", "example"],
+  "author": "Snappjack",
+  "license": "MIT"
+}
