@@ -305,22 +305,24 @@ async function toggleAuth() {
         return;
     }
 
+    if (!snappjack) {
+        addLog('Snappjack client not available for auth toggle', 'error');
+        return;
+    }
+
     const newAuthRequirement = !currentAuthRequirement;
     addLog(`${newAuthRequirement ? 'Enabling' : 'Disabling'} authentication requirement...`, 'info');
 
-    const result = await apiCall('/api/auth/toggle', {
-        method: 'POST',
-        body: {
-            userId: userId,
-            requireAuth: newAuthRequirement
-        }
-    });
+    try {
+        await snappjack.updateAuthRequirement(newAuthRequirement);
+        currentAuthRequirement = newAuthRequirement;
+        updateAuthToggleButton();
 
-    currentAuthRequirement = result.requireAuthHeader;
-    updateAuthToggleButton();
-
-    addLog(`✅ ${result.message}`, 'success');
-    addLog('🔄 Reconnect your agent with the updated configuration below', 'info');
+        addLog(`✅ Authentication ${newAuthRequirement ? 'enabled' : 'disabled'} for user`, 'success');
+        addLog('🔄 Reconnect your agent with the updated configuration below', 'info');
+    } catch (error) {
+        addLog(`❌ Failed to update auth requirement: ${error.message}`, 'error');
+    }
 }
 
 // Initialize the application

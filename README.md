@@ -105,7 +105,6 @@ This example demonstrates the core Snappjack integration patterns:
 - **Configuration Management**: Centralized app config served from `/api/config`
 - **User Session Management**: Unified `/api/user/session` endpoint handles user creation and validation
 - **Secure Authentication**: API keys stay server-side, ephemeral tokens for WebSocket connections
-- **Auth Toggle**: Optional Bearer token authentication for MCP connections
 
 ### Client Integration
 - **Shared Textarea**: Both users and AI agents can read and write to the same text area

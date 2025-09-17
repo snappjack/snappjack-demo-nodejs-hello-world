@@ -5,14 +5,19 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node --watch server.js"
   },
   "dependencies": {
-    "@snappjack/sdk-js": "file:../snappjack-sdk-js",
-    "express": "^4.18.2",
-    "dotenv": "^16.3.1"
+    "@snappjack/sdk-js": "^0.5.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
   },
-  "keywords": ["snappjack", "ai", "mcp", "example"],
+  "keywords": [
+    "snappjack",
+    "ai",
+    "mcp",
+    "example"
+  ],
   "author": "Snappjack",
   "license": "MIT"
 }

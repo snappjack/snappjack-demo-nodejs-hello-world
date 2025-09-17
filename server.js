@@ -110,35 +110,6 @@ app.get('/api/config', (req, res) => {
   });
 });
 
-// Toggle auth requirement endpoint
-app.post('/api/auth/toggle', async (req, res) => {
-  try {
-    const { userId, requireAuth } = req.body;
-
-    if (!userId) {
-      return res.status(400).json({ error: 'userId is required' });
-    }
-
-    if (typeof requireAuth !== 'boolean') {
-      return res.status(400).json({ error: 'requireAuth must be a boolean' });
-    }
-
-    console.log(`${requireAuth ? 'Enabling' : 'Disabling'} auth requirement for user: ${userId}`);
-
-    const result = await serverHelper.updateAuthRequirement(userId, requireAuth);
-    console.log(`Auth requirement updated: ${JSON.stringify(result)}`);
-
-    res.json({
-      success: true,
-      requireAuthHeader: result.requireAuthHeader,
-      message: `Authentication ${requireAuth ? 'enabled' : 'disabled'} for user`
-    });
-  } catch (error) {
-    console.error('Auth toggle failed:', error);
-    res.status(500).json({ error: 'Failed to update auth requirement' });
-  }
-});
-
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
