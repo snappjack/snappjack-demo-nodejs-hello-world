@@ -3,6 +3,10 @@ const path = require('path');
 const { SnappjackServerHelper } = require('@snappjack/sdk-js/server');
 require('dotenv').config();
 
+const SNAPP_ID = process.env.SNAPP_ID ?? (()=>{throw new Error('SNAPP_ID is required')})();
+const SNAPP_API_KEY = process.env.SNAPP_API_KEY ?? (()=>{throw new Error('SNAPP_API_KEY is required')})();
+const SNAPPJACK_BRIDGE_SERVER_URL = process.env.SNAPPJACK_BRIDGE_SERVER_URL; // optional: only required if running a local bridge server
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -16,8 +20,9 @@ app.use('/sdk', express.static('node_modules/@snappjack/sdk-js/dist'));
 // Initialize Snappjack Server Helper
 // Your secret API key - NEVER expose this client-side
 const serverHelper = new SnappjackServerHelper({
-  snappId: process.env.SNAPP_ID,
-  snappApiKey: process.env.SNAPP_API_KEY // wak_...
+  snappId: SNAPP_ID,
+  snappApiKey: SNAPP_API_KEY, // wak_...
+  serverUrl: SNAPPJACK_BRIDGE_SERVER_URL // optional: only required if running a local bridge server
 });
 
 // Secure token endpoint
@@ -105,8 +110,9 @@ app.post('/api/user/session', async (req, res) => {
 // Get app configuration
 app.get('/api/config', (req, res) => {
   res.json({
-    snappId: process.env.SNAPP_ID,
-    appName: 'Hello World Snapp'
+    snappId: SNAPP_ID,
+    appName: 'Hello World Snapp',
+    serverUrl: SNAPPJACK_BRIDGE_SERVER_URL // optional: only required if running a local bridge server
   });
 });
 

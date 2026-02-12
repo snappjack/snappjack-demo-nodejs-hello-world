@@ -118,6 +118,7 @@ async function initializeSnappjack() {
         snappjack = new Snappjack({
             snappId: appConfig.snappId,
             userId: userId,
+            serverUrl: appConfig.serverUrl, // optional: only required is running a local bridge server
             tokenProvider: getToken,
 
             tools: [{
